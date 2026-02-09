@@ -1,1 +1,1911 @@
-# careline-wallet
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CareLine Wallet - Your trusted financial companion for responsible credit, cashless payments, and smart money management. Supporting education, health, and business needs.">
+    <meta name="keywords" content="digital wallet, responsible credit, financial management, education support, health support, business credit, Malaysia fintech">
+    <meta name="author" content="CareLine Wallet">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="CareLine Wallet - Your Line to Smarter Credit">
+    <meta property="og:description" content="More than a digital wallet — your trusted financial companion for responsible credit and smart money management.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.carelinewallet.com">
+    <meta property="og:image" content="https://www.carelinewallet.com/og-image.jpg">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CareLine Wallet - Your Line to Smarter Credit">
+    <meta name="twitter:description" content="Your trusted financial companion for responsible credit and smart money management.">
+    <meta name="twitter:image" content="https://www.carelinewallet.com/twitter-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💳</text></svg>">
+    
+    <title>CareLine Wallet - Your Line to Smarter Credit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0066FF;
+            --primary-dark: #0052CC;
+            --secondary: #00D4AA;
+            --accent: #FF6B9D;
+            --dark: #0A0E27;
+            --dark-secondary: #1A1F3A;
+            --light: #F8FAFC;
+            --gray: #64748B;
+            --gradient-1: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            --gradient-2: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            --gradient-3: linear-gradient(135deg, #FF6B9D 0%, #FFA07A 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            overflow-x: hidden;
+            background: var(--light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Sora', sans-serif;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-1);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.active {
+            max-height: 500px;
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 2rem;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-menu ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: 1.1rem;
+            display: block;
+            padding: 0.5rem 0;
+        }
+
+        .cta-button {
+            background: var(--gradient-1);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 102, 255, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 100%);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            bottom: -100px;
+            left: -50px;
+            background: var(--gradient-3);
+            animation-delay: 5s;
+        }
+
+        .circle:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: 40%;
+            left: 30%;
+            background: var(--gradient-2);
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-text .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .primary-btn {
+            background: var(--gradient-1);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 102, 255, 0.4);
+        }
+
+        .primary-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 102, 255, 0.5);
+        }
+
+        .secondary-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeInRight 1s ease-out 0.6s backwards;
+        }
+
+        .phone-mockup {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phone-frame {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+            animation: phoneFloat 6s infinite ease-in-out;
+        }
+
+        @keyframes phoneFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .phone-screen {
+            background: white;
+            border-radius: 30px;
+            padding: 2rem;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 8rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-header p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: 0;
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary);
+        }
+
+        .service-card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .service-card:nth-child(2) .service-icon {
+            background: var(--gradient-3);
+        }
+
+        .service-card:nth-child(3) .service-icon {
+            background: var(--gradient-2);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-item h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .feature-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            color: var(--gray);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            color: white;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .testimonial-card:nth-child(2) {
+            background: var(--gradient-1);
+        }
+
+        .testimonial-card:nth-child(3) {
+            background: var(--gradient-3);
+        }
+
+        .testimonial-card:nth-child(4) {
+            background: linear-gradient(135deg, #00D4AA 0%, #0066FF 100%);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            opacity: 0.3;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .author-info h5 {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-info p {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, #0A0E27 0%, #1A1F3A 100%);
+            color: white;
+        }
+
+        .pricing-card {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 4rem;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .pricing-item .value {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-item p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        /* Team */
+        .team {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .team-grid {
+            max-width: 1400px;
+            margin: 4rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+        }
+
+        .team-member {
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .team-member:nth-child(2) .member-photo {
+            background: var(--gradient-3);
+        }
+
+        .team-member:nth-child(3) .member-photo {
+            background: var(--gradient-2);
+        }
+
+        .team-member:nth-child(4) .member-photo {
+            background: linear-gradient(135deg, #00D4AA 0%, #0066FF 100%);
+        }
+
+        .team-member:nth-child(5) .member-photo {
+            background: linear-gradient(135deg, #FFA07A 0%, #FF6B9D 100%);
+        }
+
+        .team-member h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .team-member p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            background: var(--gradient-1);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-white-btn {
+            background: white;
+            color: var(--primary);
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-white-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contact Form */
+        .contact-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 102, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .contact-item-text h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .contact-item-text p {
+            color: var(--gray);
+            margin: 0;
+        }
+
+        .contact-item-text a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item-text a:hover {
+            color: var(--primary-dark);
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%);
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--gradient-1);
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        .form-message {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 10px;
+            display: none;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-message.success {
+            background: rgba(0, 212, 170, 0.1);
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+
+        .form-message.error {
+            background: rgba(255, 107, 157, 0.1);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links h4 {
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .cta-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .contact-form {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .service-card,
+            .feature-item {
+                padding: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Scroll Animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">CareLine Wallet</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact" class="cta-button">Get Started</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#home" class="mobile-link">Home</a></li>
+            <li><a href="#services" class="mobile-link">Services</a></li>
+            <li><a href="#features" class="mobile-link">Features</a></li>
+            <li><a href="#pricing" class="mobile-link">Pricing</a></li>
+            <li><a href="#team" class="mobile-link">Team</a></li>
+            <li><a href="#contact" class="cta-button" style="display: inline-block; margin-top: 1rem;">Get Started</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Your Line to <span class="highlight">Smarter Credit</span></h1>
+                <p>More than a digital wallet — your trusted financial companion for responsible credit, cashless payments, and smart money management.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="primary-btn">Download Now</a>
+                    <a href="#features" class="secondary-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div style="text-align: center; padding: 2rem 0;">
+                                <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%); border-radius: 25px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">💳</div>
+                                <h3 style="color: #0A0E27; font-size: 1.5rem; margin-bottom: 1rem;">CareLine Wallet</h3>
+                                <p style="color: #64748B;">Your Financial Companion</p>
+                                <div style="margin-top: 3rem; padding: 1.5rem; background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%); border-radius: 20px;">
+                                    <div style="font-size: 2.5rem; font-weight: 800; color: #0066FF; margin-bottom: 0.5rem;">RM 5,240</div>
+                                    <div style="color: #64748B; font-size: 0.9rem;">Available Balance</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services scroll-reveal" id="services">
+        <div class="section-header">
+            <span class="section-tag">WHO WE SERVE</span>
+            <h2>Supporting Your Financial Journey</h2>
+            <p>Ethical credit and financial support for those who need it most</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Education Support</h3>
+                <p>For students and parents who need short-term financial help for tuition fees, textbooks, online courses, and skill development — without long-term financial burden.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>Health Support</h3>
+                <p>For individuals and families requiring immediate funds for medical treatments, medications, health check-ups, or emergency healthcare.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💼</div>
+                <h3>Business Support</h3>
+                <p>For micro and small business owners, self-employed individuals, and gig workers who need short-term credit to manage cash flow and sustain daily operations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features scroll-reveal" id="features">
+        <div class="section-header">
+            <span class="section-tag">KEY FEATURES</span>
+            <h2>Everything You Need in One Platform</h2>
+            <p>Comprehensive financial tools designed with your success in mind</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">💰</div>
+                <h4>All-in-One Digital Wallet</h4>
+                <ul class="feature-list">
+                    <li>Securely store and manage funds</li>
+                    <li>QR payments & transfers</li>
+                    <li>Pay bills and shop online</li>
+                    <li>Peer-to-peer transactions</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <h4>Responsible Credit Access</h4>
+                <ul class="feature-list">
+                    <li>Low-interest short-term loans</li>
+                    <li>Flexible repayment options</li>
+                    <li>Category-based credit limits</li>
+                    <li>Friendly payment reminders</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📊</div>
+                <h4>Smart Financial Guidance</h4>
+                <ul class="feature-list">
+                    <li>Real-time spending insights</li>
+                    <li>Budget tracking tools</li>
+                    <li>Practical money-saving tips</li>
+                    <li>Debt prevention alerts</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🛡️</div>
+                <h4>Customer Protection</h4>
+                <ul class="feature-list">
+                    <li>Clear terms and fees</li>
+                    <li>Cooling-off period</li>
+                    <li>Written agreements</li>
+                    <li>Transparent pricing</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚖️</div>
+                <h4>Legal & Ethical Compliance</h4>
+                <ul class="feature-list">
+                    <li>Consumer credit regulations</li>
+                    <li>Fair debt collection</li>
+                    <li>Responsible assessments</li>
+                    <li>Regulatory standards</li>
+                </ul>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <h4>Privacy & Data Security</h4>
+                <ul class="feature-list">
+                    <li>Advanced encryption</li>
+                    <li>Limited staff access</li>
+                    <li>No data sharing</li>
+                    <li>Secure systems</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials scroll-reveal">
+        <div class="section-header">
+            <span class="section-tag">SUCCESS STORIES</span>
+            <h2>Trusted by Thousands</h2>
+            <p>Real stories from real people who trust CareLine Wallet</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <div class="testimonial-text">
+                    "CareLine Wallet helped me cover my tuition fees when my family faced a temporary financial shortage. The repayment plan was clear and manageable, which allowed me to focus on my studies without unnecessary stress."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AR</div>
+                    <div class="author-info">
+                        <h5>Aisyah Rahman</h5>
+                        <p>Student</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <div class="testimonial-text">
+                    "When my family needed urgent funds for medical treatment, CareLine Wallet provided fast and responsible credit support. The process was simple, and the clear repayment terms gave us peace of mind during a difficult time."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">HS</div>
+                    <div class="author-info">
+                        <h5>Harry Sulaiman</h5>
+                        <p>Working Parent</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <div class="testimonial-text">
+                    "As a small business owner, CareLine Wallet helped me manage cash flow and purchase supplies without risking my personal finances. The purpose-based credit system encourages responsible borrowing and supports business sustainability."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">TC</div>
+                    <div class="author-info">
+                        <h5>Tey Chee Hon</h5>
+                        <p>Businessman</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <div class="testimonial-text">
+                    "CareLine Wallet helped me handle work-related expenses during low-income periods. The clear usage limits and repayment reminders support responsible borrowing and financial stability."
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">IH</div>
+                    <div class="author-info">
+                        <h5>Imad Hakim</h5>
+                        <p>Gig Worker</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing scroll-reveal" id="pricing">
+        <div class="section-header">
+            <span class="section-tag" style="background: rgba(255, 255, 255, 0.2); color: white;">TRANSPARENT PRICING</span>
+            <h2 style="color: white;">Fair & Honest Pricing</h2>
+            <p style="color: rgba(255, 255, 255, 0.8);">No hidden fees — all charges disclosed upfront</p>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-grid">
+                <div class="pricing-item">
+                    <h4>Interest Rate</h4>
+                    <div class="value">6%–12%</div>
+                    <p>Per year, based on creditworthiness</p>
+                </div>
+                <div class="pricing-item">
+                    <h4>Processing Fee</h4>
+                    <div class="value">1%–2%</div>
+                    <p>One-time fee</p>
+                </div>
+                <div class="pricing-item">
+                    <h4>Late Fees</h4>
+                    <div class="value">Capped</div>
+                    <p>Small percentage, maximum limit applied</p>
+                </div>
+                <div class="pricing-item">
+                    <h4>Repayment Period</h4>
+                    <div class="value">6–36 months</div>
+                    <p>Flexible terms to suit your needs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section class="team scroll-reveal" id="team">
+        <div class="section-header">
+            <span class="section-tag">OUR TEAM</span>
+            <h2>Meet the People Behind CareLine</h2>
+            <p>Dedicated professionals committed to your financial success</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="member-photo">WL</div>
+                <h4>Wong Lou Xuan</h4>
+                <p>CEO</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">SP</div>
+                <h4>Soh Poh Yee</h4>
+                <p>Marketing Manager</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">TS</div>
+                <h4>Tan Sye Hng</h4>
+                <p>Operation Manager</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">MA</div>
+                <h4>Muhammad Airiel Rafieq</h4>
+                <p>Technology Manager</p>
+            </div>
+            <div class="team-member">
+                <div class="member-photo">TH</div>
+                <h4>Tey Hao Rui</h4>
+                <p>Finance Manager</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section scroll-reveal" id="contact">
+        <div class="section-header">
+            <span class="section-tag">GET IN TOUCH</span>
+            <h2>Ready to Get Started?</h2>
+            <p>Contact us today and take the first step towards smarter credit management</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Connect</h3>
+                <p>Have questions about CareLine Wallet? We're here to help you make informed decisions about your financial future.</p>
+                
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-item-text">
+                            <h4>Our Office</h4>
+                            <p>Menara Prestige No. 1, Jalan Pinang<br>50450 Kuala Lumpur, Malaysia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-item-text">
+                            <h4>Phone</h4>
+                            <p><a href="tel:+601162717895">+6011-62717895</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-item-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:carelinewallet@gmail.com">carelinewallet@gmail.com</a></p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-item-text">
+                            <h4>Website</h4>
+                            <p><a href="https://www.carelinewallet.com" target="_blank">www.carelinewallet.com</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+60 12-345 6789">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="service">Service Interest *</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select a service</option>
+                            <option value="education">Education Support</option>
+                            <option value="health">Health Support</option>
+                            <option value="business">Business Support</option>
+                            <option value="digital-wallet">Digital Wallet</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    
+                    <div id="formMessage" class="form-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section scroll-reveal">
+        <div class="cta-content">
+            <h2>Download CareLine Wallet Today</h2>
+            <p>Join thousands who trust CareLine Wallet for smarter credit and better financial management.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="cta-white-btn">Get Started Now</a>
+                <a href="tel:+601162717895" class="secondary-btn">Call Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>CareLine Wallet</h3>
+                <p>Your trusted financial companion designed to help users manage money responsibly, access ethical credit, and build long-term financial confidence.</p>
+                <div style="margin-top: 2rem;">
+                    <p><strong>📍 Address:</strong><br>Menara Prestige No. 1, Jalan Pinang<br>50450 Kuala Lumpur, Malaysia</p>
+                    <p style="margin-top: 1rem;"><strong>📞 Phone:</strong> +6011-62717895</p>
+                    <p><strong>✉️ Email:</strong> carelinewallet@gmail.com</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#team">Our Team</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Education Support</a></li>
+                    <li><a href="#services">Health Support</a></li>
+                    <li><a href="#services">Business Support</a></li>
+                    <li><a href="#features">Digital Wallet</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 CareLine Wallet. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Twitter">𝕏</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="LinkedIn">in</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.mobile-menu') && !event.target.closest('.mobile-menu-btn')) {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.scroll-reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const revealPoint = 150;
+                
+                if (elementTop < windowHeight - revealPoint) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Check on page load
+
+        // Contact Form Handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+            
+            // Validate form
+            if (!data.name || !data.email || !data.service || !data.message) {
+                showMessage('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(data.email)) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // Simulate form submission (replace with actual backend integration)
+            showMessage('Sending your message...', 'success');
+            
+            setTimeout(() => {
+                // In production, replace this with actual API call
+                // fetch('/api/contact', { method: 'POST', body: JSON.stringify(data) })
+                
+                showMessage('Thank you! Your message has been sent successfully. We\'ll get back to you soon!', 'success');
+                contactForm.reset();
+                
+                // Optional: Send to email using mailto as fallback
+                const subject = encodeURIComponent(`CareLine Wallet Inquiry - ${data.service}`);
+                const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone || 'Not provided'}\nService: ${data.service}\n\nMessage:\n${data.message}`);
+                
+                // You can optionally open email client
+                // window.location.href = `mailto:carelinewallet@gmail.com?subject=${subject}&body=${body}`;
+            }, 1500);
+        });
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = `form-message ${type}`;
+            formMessage.style.display = 'block';
+            
+            if (type === 'success') {
+                setTimeout(() => {
+                    formMessage.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Add loading animation to submit button
+        contactForm.addEventListener('submit', function() {
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 2000);
+        });
+
+        // Parallax effect on hero circles
+        window.addEventListener('scroll', function() {
+            const circles = document.querySelectorAll('.circle');
+            const scrolled = window.pageYOffset;
+            
+            circles.forEach((circle, index) => {
+                const speed = 0.3 + (index * 0.1);
+                circle.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add active state to navigation based on scroll position
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Animate numbers on scroll (for stats if needed)
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.textContent = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Back to top functionality
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.innerHTML = '↑';
+        backToTopBtn.className = 'back-to-top';
+        backToTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #0066FF 0%, #00D4AA 100%);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+            transition: all 0.3s ease;
+        `;
+        document.body.appendChild(backToTopBtn);
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        backToTopBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px) scale(1.1)';
+        });
+
+        backToTopBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    </script>
+</body>
+</html>
